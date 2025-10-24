@@ -3,9 +3,9 @@ import usualLogo from "@/assets/usal-logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-usal-dark text-background py-12 border-t border-border">
+    <footer className="bg-usal-dark text-background py-8 sm:py-12 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <img 
@@ -52,6 +52,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-background/20 text-center text-background/50 text-sm">
           <p>&copy; {new Date().getFullYear()} Universidad del Salvador - EcoRide USAL. Todos los derechos reservados.</p>
           <p className="mt-2 text-xs">Programa de Sustentabilidad y Responsabilidad Social Universitaria</p>
+          <p className="mt-2 text-sm font-medium">Realizado con amor por alumnos de Ing Informática ❤️</p>
         </div>
       </div>
     </footer>

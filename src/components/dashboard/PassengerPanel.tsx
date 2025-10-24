@@ -5,6 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Car, Clock, MapPin, Users } from "lucide-react";
 import { toast } from "sonner";
+import AudioRecorder from "./AudioRecorder";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface PassengerPanelProps {
   userId: string;
@@ -14,6 +23,8 @@ const PassengerPanel = ({ userId }: PassengerPanelProps) => {
   const [trips, setTrips] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
+  const [selectedTripId, setSelectedTripId] = useState<string | null>(null);
+  const [audioNote, setAudioNote] = useState<string>("");
 
   useEffect(() => {
     loadTrips();
@@ -49,10 +60,13 @@ const PassengerPanel = ({ userId }: PassengerPanelProps) => {
         .insert({
           trip_id: tripId,
           passenger_id: userId,
+          audio_note: audioNote || null,
         });
 
       if (error) throw error;
       toast.success("¡Solicitud enviada al conductor!");
+      setSelectedTripId(null);
+      setAudioNote("");
       loadTrips();
     } catch (error: any) {
       if (error.code === "23505") {
@@ -102,45 +116,84 @@ const PassengerPanel = ({ userId }: PassengerPanelProps) => {
               <Card key={trip.id} className="border-usal-light/20">
                 <CardContent className="pt-6">
                   <div className="space-y-3">
-                    <div className="flex items-start justify-between">
-                      <div className="space-y-2 flex-1">
-                        <div className="flex items-center gap-2">
-                          <MapPin className="h-4 w-4 text-usal-green" />
-                          <span className="font-medium">{trip.origin}</span>
-                          <span className="text-muted-foreground">→</span>
-                          <span className="font-medium">{trip.destination}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                      <div className="space-y-2 flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <MapPin className="h-4 w-4 text-usal-green shrink-0" />
+                          <span className="font-medium truncate">{trip.origin}</span>
+                          <span className="text-muted-foreground shrink-0">→</span>
+                          <span className="font-medium truncate">{trip.destination}</span>
                         </div>
                         
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-muted-foreground">
                           <div className="flex items-center gap-1">
-                            <Clock className="h-4 w-4" />
-                            {new Date(trip.departure_date).toLocaleDateString('es-AR')} - {trip.departure_time}
+                            <Clock className="h-4 w-4 shrink-0" />
+                            <span className="truncate">{new Date(trip.departure_date).toLocaleDateString('es-AR')} - {trip.departure_time}</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <Users className="h-4 w-4" />
-                            {trip.seats_available} lugar{trip.seats_available !== 1 ? 'es' : ''}
+                            <Users className="h-4 w-4 shrink-0" />
+                            <span>{trip.seats_available} lugar{trip.seats_available !== 1 ? 'es' : ''}</span>
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-2 text-sm">
-                          <Car className="h-4 w-4 text-muted-foreground" />
-                          <span>{trip.vehicle?.model} {trip.vehicle?.color}</span>
+                        <div className="flex items-center gap-2 text-sm flex-wrap">
+                          <Car className="h-4 w-4 text-muted-foreground shrink-0" />
+                          <span className="truncate">{trip.vehicle?.model} {trip.vehicle?.color}</span>
                           <span className="text-muted-foreground">•</span>
-                          <span>{trip.vehicle?.license_plate}</span>
+                          <span className="truncate">{trip.vehicle?.license_plate}</span>
                         </div>
 
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground truncate">
                           Conductor: {trip.driver?.full_name || trip.driver?.email}
                         </p>
                       </div>
 
-                      <Button
-                        onClick={() => requestTrip(trip.id)}
-                        size="sm"
-                        className="bg-usal-gradient hover:opacity-90"
-                      >
-                        Unirme
-                      </Button>
+                      <div className="shrink-0 w-full sm:w-auto">
+                        <Dialog open={selectedTripId === trip.id} onOpenChange={(open) => {
+                        if (!open) {
+                          setSelectedTripId(null);
+                          setAudioNote("");
+                        }
+                      }}>
+                        <DialogTrigger asChild>
+                          <Button
+                            onClick={() => setSelectedTripId(trip.id)}
+                            size="sm"
+                            className="bg-usal-gradient hover:opacity-90"
+                          >
+                            Unirme
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-md">
+                          <DialogHeader>
+                            <DialogTitle>Solicitar viaje</DialogTitle>
+                            <DialogDescription>
+                              Podés agregar una nota de voz opcional para el conductor
+                            </DialogDescription>
+                          </DialogHeader>
+                          <div className="space-y-4 py-4">
+                            <AudioRecorder onAudioRecorded={setAudioNote} />
+                            <div className="flex gap-2 justify-end">
+                              <Button
+                                variant="outline"
+                                onClick={() => {
+                                  setSelectedTripId(null);
+                                  setAudioNote("");
+                                }}
+                              >
+                                Cancelar
+                              </Button>
+                              <Button
+                                onClick={() => requestTrip(trip.id)}
+                                className="bg-usal-gradient hover:opacity-90"
+                              >
+                                Enviar solicitud
+                              </Button>
+                            </div>
+                          </div>
+                        </DialogContent>
+                        </Dialog>
+                      </div>
                     </div>
                   </div>
                 </CardContent>

@@ -87,6 +87,7 @@ export type Database = {
       }
       trip_requests: {
         Row: {
+          audio_note: string | null
           created_at: string
           id: string
           passenger_id: string
@@ -98,6 +99,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          audio_note?: string | null
           created_at?: string
           id?: string
           passenger_id: string
@@ -109,6 +111,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          audio_note?: string | null
           created_at?: string
           id?: string
           passenger_id?: string
@@ -138,7 +141,9 @@ export type Database = {
       }
       trips: {
         Row: {
+          cancelled_at: string | null
           co2_saved_kg: number | null
+          completed_at: string | null
           created_at: string
           departure_date: string
           departure_time: string
@@ -159,7 +164,9 @@ export type Database = {
           vehicle_id: string
         }
         Insert: {
+          cancelled_at?: string | null
           co2_saved_kg?: number | null
+          completed_at?: string | null
           created_at?: string
           departure_date: string
           departure_time: string
@@ -180,7 +187,9 @@ export type Database = {
           vehicle_id: string
         }
         Update: {
+          cancelled_at?: string | null
           co2_saved_kg?: number | null
+          completed_at?: string | null
           created_at?: string
           departure_date?: string
           departure_time?: string

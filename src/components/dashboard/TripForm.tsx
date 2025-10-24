@@ -76,7 +76,7 @@ const TripForm = ({ userId, vehicles, onClose }: TripFormProps) => {
   return (
     <Card className="border-usal-light/20 shadow-usal-soft">
       <CardHeader>
-        <CardTitle>Publicar Viaje</CardTitle>
+        <CardTitle className="text-lg sm:text-xl">Publicar Viaje</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -181,14 +181,14 @@ const TripForm = ({ userId, vehicles, onClose }: TripFormProps) => {
             </div>
           </div>
 
-          <div className="flex gap-2 justify-end">
-            <Button type="button" variant="outline" onClick={onClose}>
+          <div className="flex flex-col sm:flex-row gap-2 justify-end">
+            <Button type="button" variant="outline" onClick={onClose} className="w-full sm:w-auto">
               Cancelar
             </Button>
             <Button
               type="submit"
               disabled={loading || !vehicleId}
-              className="bg-usal-gradient hover:opacity-90"
+              className="bg-usal-gradient hover:opacity-90 w-full sm:w-auto"
             >
               {loading ? "Publicando..." : "Publicar Viaje"}
             </Button>
