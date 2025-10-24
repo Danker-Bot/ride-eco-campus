@@ -14,16 +14,259 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ecological_metrics: {
+        Row: {
+          created_at: string
+          id: string
+          total_co2_saved_kg: number
+          total_money_saved_ars: number
+          total_trips: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          total_co2_saved_kg?: number
+          total_money_saved_ars?: number
+          total_trips?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          total_co2_saved_kg?: number
+          total_money_saved_ars?: number
+          total_trips?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ecological_metrics_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          phone: string | null
+          role: Database["public"]["Enums"]["user_role"]
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email: string
+          full_name: string
+          id: string
+          phone?: string | null
+          role?: Database["public"]["Enums"]["user_role"]
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          phone?: string | null
+          role?: Database["public"]["Enums"]["user_role"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      trip_requests: {
+        Row: {
+          created_at: string
+          id: string
+          passenger_id: string
+          pickup_lat: number | null
+          pickup_lng: number | null
+          pickup_location: string | null
+          status: string
+          trip_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          passenger_id: string
+          pickup_lat?: number | null
+          pickup_lng?: number | null
+          pickup_location?: string | null
+          status?: string
+          trip_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          passenger_id?: string
+          pickup_lat?: number | null
+          pickup_lng?: number | null
+          pickup_location?: string | null
+          status?: string
+          trip_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trip_requests_passenger_id_fkey"
+            columns: ["passenger_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "trip_requests_trip_id_fkey"
+            columns: ["trip_id"]
+            isOneToOne: false
+            referencedRelation: "trips"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      trips: {
+        Row: {
+          co2_saved_kg: number | null
+          created_at: string
+          departure_date: string
+          departure_time: string
+          destination: string
+          destination_lat: number | null
+          destination_lng: number | null
+          driver_id: string
+          id: string
+          money_saved_ars: number | null
+          origin: string
+          origin_lat: number | null
+          origin_lng: number | null
+          seats_available: number
+          status: string
+          updated_at: string
+          vehicle_id: string
+        }
+        Insert: {
+          co2_saved_kg?: number | null
+          created_at?: string
+          departure_date: string
+          departure_time: string
+          destination: string
+          destination_lat?: number | null
+          destination_lng?: number | null
+          driver_id: string
+          id?: string
+          money_saved_ars?: number | null
+          origin: string
+          origin_lat?: number | null
+          origin_lng?: number | null
+          seats_available: number
+          status?: string
+          updated_at?: string
+          vehicle_id: string
+        }
+        Update: {
+          co2_saved_kg?: number | null
+          created_at?: string
+          departure_date?: string
+          departure_time?: string
+          destination?: string
+          destination_lat?: number | null
+          destination_lng?: number | null
+          driver_id?: string
+          id?: string
+          money_saved_ars?: number | null
+          origin?: string
+          origin_lat?: number | null
+          origin_lng?: number | null
+          seats_available?: number
+          status?: string
+          updated_at?: string
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trips_driver_id_fkey"
+            columns: ["driver_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "trips_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      vehicles: {
+        Row: {
+          color: string
+          created_at: string
+          driver_id: string
+          id: string
+          license_plate: string
+          model: string
+          seats_available: number
+          updated_at: string
+        }
+        Insert: {
+          color: string
+          created_at?: string
+          driver_id: string
+          id?: string
+          license_plate: string
+          model: string
+          seats_available: number
+          updated_at?: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          driver_id?: string
+          id?: string
+          license_plate?: string
+          model?: string
+          seats_available?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vehicles_driver_id_fkey"
+            columns: ["driver_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      calculate_trip_savings: {
+        Args: { seats_filled: number }
+        Returns: {
+          co2_saved_kg: number
+          money_saved_ars: number
+        }[]
+      }
     }
     Enums: {
-      [_ in never]: never
+      user_role: "driver" | "passenger" | "both"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +393,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      user_role: ["driver", "passenger", "both"],
+    },
   },
 } as const
