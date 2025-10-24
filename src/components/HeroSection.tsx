@@ -24,8 +24,8 @@ const HeroSection = () => {
             </h1>
             
             <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
-              Plataforma institucional que conecta a la comunidad USAL para compartir viajes hacia el campus. 
-              Una iniciativa que promueve la movilidad sostenible y fortalece los vínculos entre estudiantes, docentes y personal administrativo.
+              Plataforma institucional que conecta a los estudiantes de la USAL para compartir viajes hacia el campus. 
+              Una iniciativa que promueve la movilidad sostenible y fortalece los vínculos entre compañeros.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">

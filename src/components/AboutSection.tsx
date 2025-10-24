@@ -44,9 +44,8 @@ const AboutSection = () => {
               buscamos fomentar prácticas sustentables entre nuestra comunidad académica.
             </p>
             <p className="text-lg text-foreground leading-relaxed">
-              Esta plataforma facilita la organización de viajes compartidos entre estudiantes, docentes y personal 
-              administrativo, contribuyendo a la reducción de la huella de carbono institucional y fortaleciendo 
-              los lazos de nuestra comunidad universitaria.
+              Esta plataforma facilita la organización de viajes compartidos entre estudiantes, contribuyendo 
+              a la reducción de la huella de carbono institucional y fortaleciendo los lazos entre compañeros.
             </p>
           </div>
 

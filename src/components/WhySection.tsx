@@ -35,9 +35,9 @@ const WhySection = () => {
     {
       icon: Users,
       title: "Construye comunidad",
-      description: "Conoce a otros miembros de la facultad en cada viaje",
+      description: "Conoce a otros estudiantes en cada viaje",
       stat: "1.2K",
-      statLabel: "usuarios activos"
+      statLabel: "estudiantes activos"
     },
     {
       icon: TrendingDown,

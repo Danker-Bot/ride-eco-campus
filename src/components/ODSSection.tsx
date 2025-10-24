@@ -27,7 +27,7 @@ const ODSSection = () => {
     {
       number: 17,
       title: "Alianzas para Lograr los Objetivos",
-      description: "EcoRide fortalece la colaboración entre estudiantes, docentes y personal administrativo, creando una red de apoyo mutuo que trasciende lo académico y construye una comunidad universitaria más unida y comprometida.",
+      description: "EcoRide fortalece la colaboración entre estudiantes, creando una red de apoyo mutuo que trasciende lo académico y construye una comunidad universitaria más unida y comprometida.",
       image: ods17,
     },
   ];
