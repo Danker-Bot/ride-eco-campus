@@ -48,7 +48,7 @@ const EcologicalMetrics = ({ userId }: EcologicalMetricsProps) => {
   const loadLeaderboard = async () => {
     const { data } = await supabase
       .from("ecological_metrics")
-      .select("*, user:profiles(full_name, email)")
+      .select("*, user:public_profiles(full_name, avatar_url)")
       .order("total_co2_saved_kg", { ascending: false })
       .limit(5);
     setLeaderboard(data || []);
@@ -153,7 +153,7 @@ const EcologicalMetrics = ({ userId }: EcologicalMetricsProps) => {
                     {index + 1}
                   </div>
                   <span className="font-medium">
-                    {entry.user?.full_name || entry.user?.email}
+                    {entry.user?.full_name || "Usuario"}
                   </span>
                 </div>
                 <div className="text-right">
