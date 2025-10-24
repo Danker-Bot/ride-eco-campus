@@ -47,10 +47,10 @@ const Navbar = () => {
           </div>
 
           <Button 
-            onClick={() => scrollToSection("hero")}
+            asChild
             className="bg-usal-gradient text-white hover:opacity-90 transition-all shadow-institutional"
           >
-            Acceder al Sistema
+            <a href="/auth">Acceder al Sistema</a>
           </Button>
         </div>
       </div>

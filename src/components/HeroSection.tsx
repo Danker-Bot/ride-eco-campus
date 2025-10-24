@@ -29,16 +29,20 @@ const HeroSection = () => {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
+                asChild
                 size="lg" 
                 className="bg-usal-gradient text-white hover:opacity-90 transition-all shadow-institutional text-lg group"
               >
-                Acceder con email USAL
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <a href="/auth">
+                  Acceder con email USAL
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
               </Button>
               <Button 
                 size="lg" 
                 variant="outline"
                 className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all"
+                onClick={() => document.getElementById("inicio")?.scrollIntoView({ behavior: "smooth" })}
               >
                 Más información
               </Button>
