@@ -145,7 +145,9 @@ export type Database = {
           destination: string
           destination_lat: number | null
           destination_lng: number | null
+          distance_km: number | null
           driver_id: string
+          estimated_duration_minutes: number | null
           id: string
           money_saved_ars: number | null
           origin: string
@@ -164,7 +166,9 @@ export type Database = {
           destination: string
           destination_lat?: number | null
           destination_lng?: number | null
+          distance_km?: number | null
           driver_id: string
+          estimated_duration_minutes?: number | null
           id?: string
           money_saved_ars?: number | null
           origin: string
@@ -183,7 +187,9 @@ export type Database = {
           destination?: string
           destination_lat?: number | null
           destination_lng?: number | null
+          distance_km?: number | null
           driver_id?: string
+          estimated_duration_minutes?: number | null
           id?: string
           money_saved_ars?: number | null
           origin?: string
