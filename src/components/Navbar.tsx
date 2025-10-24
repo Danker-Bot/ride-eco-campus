@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import usualLogo from "@/assets/usal-logo.png";
 
@@ -50,7 +51,7 @@ const Navbar = () => {
             asChild
             className="bg-usal-gradient text-white hover:opacity-90 transition-all shadow-institutional"
           >
-            <a href="/auth">Acceder al Sistema</a>
+            <Link to="/auth">Acceder al Sistema</Link>
           </Button>
         </div>
       </div>

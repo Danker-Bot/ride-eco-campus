@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Car, Users, Leaf } from "lucide-react";
 import heroImage from "@/assets/hero-ecoride.jpg";
@@ -33,10 +34,10 @@ const HeroSection = () => {
                 size="lg" 
                 className="bg-usal-gradient text-white hover:opacity-90 transition-all shadow-institutional text-lg group"
               >
-                <a href="/auth">
+                <Link to="/auth">
                   Acceder con email USAL
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
+                </Link>
               </Button>
               <Button 
                 size="lg" 
