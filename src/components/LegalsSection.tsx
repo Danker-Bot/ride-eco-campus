@@ -20,8 +20,8 @@ const LegalsSection = () => {
             </CardHeader>
             <CardContent className="prose prose-sm max-w-none">
               <p>
-                EcoRide USAL es una plataforma de carpooling destinada exclusivamente
-                a estudiantes, docentes y personal de la Universidad del Salvador.
+                EcoRide USAL es una plataforma de carpooling destinada <strong>exclusivamente
+                a estudiantes</strong> de la Universidad del Salvador.
                 Al utilizar este servicio, aceptás los siguientes términos:
               </p>
               <ul>
