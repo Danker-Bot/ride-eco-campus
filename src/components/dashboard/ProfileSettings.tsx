@@ -14,20 +14,42 @@ interface ProfileSettingsProps {
 
 const ProfileSettings = ({ profile, onProfileUpdate }: ProfileSettingsProps) => {
   const [saving, setSaving] = useState(false);
-  const [alias, setAlias] = useState(profile?.alias || "");
-  const [cbu, setCbu] = useState(profile?.cbu || "");
-  const [cvu, setCvu] = useState(profile?.cvu || "");
+  const [firstName, setFirstName] = useState(profile?.first_name || "");
+  const [lastName, setLastName] = useState(profile?.last_name || "");
+  const [paymentMethod, setPaymentMethod] = useState(profile?.alias || profile?.cbu || profile?.cvu || "");
 
   const handleSave = async () => {
     setSaving(true);
     try {
+      // Determine which field to update based on the input
+      let updateData: any = {
+        first_name: firstName,
+        last_name: lastName,
+        full_name: `${firstName} ${lastName}`.trim()
+      };
+
+      // Check if paymentMethod looks like CVU/CBU (22 digits) or Alias
+      if (paymentMethod) {
+        if (/^\d{22}$/.test(paymentMethod)) {
+          // It's a 22-digit number, could be CVU or CBU
+          updateData.cvu = paymentMethod;
+          updateData.cbu = null;
+          updateData.alias = null;
+        } else if (/^[a-zA-Z0-9.]+$/.test(paymentMethod)) {
+          // It's an alias
+          updateData.alias = paymentMethod;
+          updateData.cvu = null;
+          updateData.cbu = null;
+        }
+      }
+
       const { error } = await supabase
         .from("profiles")
-        .update({ alias, cbu, cvu })
+        .update(updateData)
         .eq("id", profile.id);
 
       if (error) throw error;
-      toast.success("Datos bancarios actualizados");
+      toast.success("Datos actualizados correctamente");
       onProfileUpdate();
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -50,35 +72,36 @@ const ProfileSettings = ({ profile, onProfileUpdate }: ProfileSettingsProps) => 
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="alias">Alias</Label>
+          <Label htmlFor="firstName">Nombre</Label>
           <Input
-            id="alias"
-            placeholder="tu.alias.banco"
-            value={alias}
-            onChange={(e) => setAlias(e.target.value)}
+            id="firstName"
+            placeholder="Tu nombre"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="cbu">CBU</Label>
+          <Label htmlFor="lastName">Apellido</Label>
           <Input
-            id="cbu"
-            placeholder="0000000000000000000000"
-            maxLength={22}
-            value={cbu}
-            onChange={(e) => setCbu(e.target.value)}
+            id="lastName"
+            placeholder="Tu apellido"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="cvu">CVU</Label>
+          <Label htmlFor="paymentMethod">Alias / CVU / CBU</Label>
           <Input
-            id="cvu"
-            placeholder="0000000000000000000000"
-            maxLength={22}
-            value={cvu}
-            onChange={(e) => setCvu(e.target.value)}
+            id="paymentMethod"
+            placeholder="tu.alias.banco o 0000000000000000000000"
+            value={paymentMethod}
+            onChange={(e) => setPaymentMethod(e.target.value)}
           />
+          <p className="text-xs text-muted-foreground">
+            Ingresá tu Alias bancario o tu CVU/CBU (22 dígitos)
+          </p>
         </div>
 
         <Button 
