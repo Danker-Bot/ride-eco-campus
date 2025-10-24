@@ -18,7 +18,10 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          last_earning_date: string | null
+          money_earned_today_ars: number | null
           total_co2_saved_kg: number
+          total_money_earned_ars: number | null
           total_money_saved_ars: number
           total_trips: number
           updated_at: string
@@ -27,7 +30,10 @@ export type Database = {
         Insert: {
           created_at?: string
           id?: string
+          last_earning_date?: string | null
+          money_earned_today_ars?: number | null
           total_co2_saved_kg?: number
+          total_money_earned_ars?: number | null
           total_money_saved_ars?: number
           total_trips?: number
           updated_at?: string
@@ -36,7 +42,10 @@ export type Database = {
         Update: {
           created_at?: string
           id?: string
+          last_earning_date?: string | null
+          money_earned_today_ars?: number | null
           total_co2_saved_kg?: number
+          total_money_earned_ars?: number | null
           total_money_saved_ars?: number
           total_trips?: number
           updated_at?: string
@@ -61,8 +70,11 @@ export type Database = {
       }
       profiles: {
         Row: {
+          alias: string | null
           avatar_url: string | null
+          cbu: string | null
           created_at: string
+          cvu: string | null
           email: string
           full_name: string
           id: string
@@ -71,8 +83,11 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          alias?: string | null
           avatar_url?: string | null
+          cbu?: string | null
           created_at?: string
+          cvu?: string | null
           email: string
           full_name: string
           id: string
@@ -81,8 +96,11 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          alias?: string | null
           avatar_url?: string | null
+          cbu?: string | null
           created_at?: string
+          cvu?: string | null
           email?: string
           full_name?: string
           id?: string
@@ -345,6 +363,7 @@ export type Database = {
         Args: { seats_filled: number }
         Returns: {
           co2_saved_kg: number
+          money_earned_per_passenger_ars: number
           money_saved_ars: number
         }[]
       }

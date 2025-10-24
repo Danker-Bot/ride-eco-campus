@@ -5,6 +5,7 @@ import { User } from "@supabase/supabase-js";
 import { Loader2 } from "lucide-react";
 import DashboardNav from "@/components/dashboard/DashboardNav";
 import RoleSelector from "@/components/dashboard/RoleSelector";
+import ProfileSettings from "@/components/dashboard/ProfileSettings";
 import DriverPanel from "@/components/dashboard/DriverPanel";
 import PassengerPanel from "@/components/dashboard/PassengerPanel";
 import EcologicalMetrics from "@/components/dashboard/EcologicalMetrics";
@@ -127,7 +128,10 @@ const Dashboard = () => {
       />
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
-        <RoleSelector profile={profile} onRoleUpdate={() => loadProfile(user!.id)} />
+        <div className="grid gap-6 lg:grid-cols-2">
+          <RoleSelector profile={profile} onRoleUpdate={() => loadProfile(user!.id)} />
+          <ProfileSettings profile={profile} onProfileUpdate={() => loadProfile(user!.id)} />
+        </div>
         
         {profile?.role === "driver" || profile?.role === "both" ? (
           <DriverPanel userId={user!.id} />

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Leaf, DollarSign, TrendingUp, Award } from "lucide-react";
+import { Leaf, DollarSign, TrendingUp, Award, Calendar } from "lucide-react";
 
 interface EcologicalMetricsProps {
   userId: string;
@@ -64,7 +64,7 @@ const EcologicalMetrics = ({ userId }: EcologicalMetricsProps) => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Leaf className="h-4 w-4" />
@@ -81,7 +81,27 @@ const EcologicalMetrics = ({ userId }: EcologicalMetricsProps) => {
                 <span className="text-sm">Dinero Ahorrado</span>
               </div>
               <p className="text-2xl font-bold text-usal-green">
-                ${metrics?.total_money_saved_ars || 0} ARS
+                ${metrics?.total_money_saved_ars || 0}
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <TrendingUp className="h-4 w-4" />
+                <span className="text-sm">Dinero Total Ganado</span>
+              </div>
+              <p className="text-2xl font-bold text-usal-green">
+                ${metrics?.total_money_earned_ars || 0}
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Calendar className="h-4 w-4" />
+                <span className="text-sm">Dinero Hoy</span>
+              </div>
+              <p className="text-2xl font-bold text-usal-green">
+                ${metrics?.money_earned_today_ars || 0}
               </p>
             </div>
 

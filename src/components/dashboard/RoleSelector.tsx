@@ -47,7 +47,7 @@ const RoleSelector = ({ profile, onRoleUpdate }: RoleSelectorProps) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           <Button
             variant={profile?.role === "driver" ? "default" : "outline"}
             className={
@@ -74,21 +74,6 @@ const RoleSelector = ({ profile, onRoleUpdate }: RoleSelectorProps) => {
           >
             <Users className="mr-2 h-4 w-4" />
             Pasajero
-          </Button>
-
-          <Button
-            variant={profile?.role === "both" ? "default" : "outline"}
-            className={
-              profile?.role === "both"
-                ? "bg-usal-gradient hover:opacity-90"
-                : ""
-            }
-            onClick={() => updateRole("both")}
-            disabled={updating}
-          >
-            <Car className="mr-2 h-4 w-4" />
-            <Users className="h-4 w-4" />
-            Ambos
           </Button>
         </div>
       </CardContent>

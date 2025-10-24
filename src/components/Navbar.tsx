@@ -51,6 +51,18 @@ const Navbar = () => {
             >
               FAQ
             </button>
+            <button 
+              onClick={() => scrollToSection("legales")}
+              className="text-foreground hover:text-primary transition-colors font-medium"
+            >
+              Legales
+            </button>
+            <button 
+              onClick={() => scrollToSection("contacto")}
+              className="text-foreground hover:text-primary transition-colors font-medium"
+            >
+              Contacto
+            </button>
           </div>
 
           <Button 
