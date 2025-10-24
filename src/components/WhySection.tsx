@@ -112,7 +112,7 @@ const WhySection = () => {
                 <p className="text-sm text-muted-foreground">Distancia de ida</p>
               </div>
               <div className="space-y-2">
-                <div className="text-4xl md:text-5xl font-bold text-primary">8.5 kg</div>
+                <div className="text-4xl md:text-5xl font-bold text-primary">6.75 kg</div>
                 <p className="text-sm text-muted-foreground">CO₂ ahorrado por viaje</p>
               </div>
               <div className="space-y-2">
