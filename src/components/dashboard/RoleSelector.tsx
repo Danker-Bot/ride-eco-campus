@@ -16,10 +16,16 @@ const RoleSelector = ({ profile, onRoleUpdate }: RoleSelectorProps) => {
   const updateRole = async (newRole: "driver" | "passenger" | "both") => {
     setUpdating(true);
     try {
+      // Delete existing role
+      await supabase
+        .from("user_roles")
+        .delete()
+        .eq("user_id", profile.id);
+
+      // Insert new role
       const { error } = await supabase
-        .from("profiles")
-        .update({ role: newRole })
-        .eq("id", profile.id);
+        .from("user_roles")
+        .insert({ user_id: profile.id, role: newRole });
 
       if (error) throw error;
       toast.success("Rol actualizado correctamente");

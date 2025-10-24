@@ -45,14 +45,35 @@ const Dashboard = () => {
 
   const loadProfile = async (userId: string) => {
     try {
-      const { data, error } = await supabase
+      // Load profile data
+      const { data: profileData, error: profileError } = await supabase
         .from("profiles")
         .select("*")
         .eq("id", userId)
         .single();
 
-      if (error) throw error;
-      setProfile(data);
+      if (profileError) throw profileError;
+
+      // Load user roles
+      const { data: rolesData, error: rolesError } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", userId);
+
+      if (rolesError) throw rolesError;
+
+      // Determine the role (if user has both driver and passenger roles, set to 'both')
+      let userRole: "driver" | "passenger" | "both" = "passenger";
+      if (rolesData && rolesData.length > 0) {
+        const roles = rolesData.map((r) => r.role);
+        if ((roles.includes("driver") && roles.includes("passenger")) || roles.includes("both")) {
+          userRole = "both";
+        } else if (roles.includes("driver")) {
+          userRole = "driver";
+        }
+      }
+
+      setProfile({ ...profileData, role: userRole });
       
       // Pedir ubicación después de cargar el perfil
       if (!locationRequested) {

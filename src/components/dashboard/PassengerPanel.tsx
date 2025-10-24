@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Search, Car, Clock, MapPin, Users } from "lucide-react";
 import { toast } from "sonner";
 import AudioRecorder from "./AudioRecorder";
+import { audioNoteSchema } from "@/lib/validationSchemas";
 import {
   Dialog,
   DialogContent,
@@ -55,6 +56,15 @@ const PassengerPanel = ({ userId }: PassengerPanelProps) => {
 
   const requestTrip = async (tripId: string) => {
     try {
+      // Validate audio note if present
+      if (audioNote) {
+        const validation = audioNoteSchema.safeParse(audioNote);
+        if (!validation.success) {
+          toast.error(validation.error.errors[0].message);
+          return;
+        }
+      }
+
       const { error } = await supabase
         .from("trip_requests")
         .insert({

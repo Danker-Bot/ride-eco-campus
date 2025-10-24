@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { vehicleSchema } from "@/lib/validationSchemas";
 
 interface VehicleFormProps {
   userId: string;
@@ -23,12 +24,27 @@ const VehicleForm = ({ userId, onClose }: VehicleFormProps) => {
     setLoading(true);
 
     try {
-      const { error } = await supabase.from("vehicles").insert({
-        driver_id: userId,
+      // Validate inputs
+      const validation = vehicleSchema.safeParse({
         model,
         color,
-        license_plate: licensePlate.toUpperCase(),
-        seats_available: seats,
+        licensePlate: licensePlate.toUpperCase(),
+        seats,
+      });
+
+      if (!validation.success) {
+        const errors = validation.error.errors.map((err) => err.message).join(", ");
+        toast.error(errors);
+        setLoading(false);
+        return;
+      }
+
+      const { error } = await supabase.from("vehicles").insert({
+        driver_id: userId,
+        model: validation.data.model,
+        color: validation.data.color,
+        license_plate: validation.data.licensePlate,
+        seats_available: validation.data.seats,
       });
 
       if (error) throw error;

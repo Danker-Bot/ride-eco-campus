@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { MapPin } from "lucide-react";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { UNIVERSITIES, UniversityKey } from "@/lib/constants/universities";
+import { tripSchema } from "@/lib/validationSchemas";
 
 interface TripFormProps {
   userId: string;
@@ -45,6 +46,19 @@ const TripForm = ({ userId, vehicles, onClose }: TripFormProps) => {
     setLoading(true);
 
     try {
+      // Validate inputs
+      const validation = tripSchema.safeParse({
+        origin,
+        destination,
+        seats,
+      });
+
+      if (!validation.success) {
+        const errors = validation.error.errors.map((err) => err.message).join(", ");
+        toast.error(errors);
+        setLoading(false);
+        return;
+      }
       const destinationData = destination ? UNIVERSITIES[destination] : null;
       
       const { error } = await supabase.from("trips").insert({

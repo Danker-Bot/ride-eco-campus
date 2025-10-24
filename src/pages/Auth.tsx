@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Leaf } from "lucide-react";
+import { authSchema } from "@/lib/validationSchemas";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -28,6 +29,19 @@ const Auth = () => {
     setLoading(true);
 
     try {
+      // Validate inputs
+      const validation = authSchema.safeParse({
+        email,
+        password,
+        fullName,
+      });
+
+      if (!validation.success) {
+        const errors = validation.error.errors.map((err) => err.message).join(", ");
+        toast.error(errors);
+        setLoading(false);
+        return;
+      }
       if (isLogin) {
         const { error } = await supabase.auth.signInWithPassword({
           email,
