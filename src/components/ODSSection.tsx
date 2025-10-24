@@ -1,5 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Building2, CloudSun, Recycle, Handshake } from "lucide-react";
+import ods11 from "@/assets/ods-11.png";
+import ods12 from "@/assets/ods-12.png";
+import ods13 from "@/assets/ods-13.png";
+import ods17 from "@/assets/ods-17.png";
 
 const ODSSection = () => {
   const odsItems = [
@@ -7,33 +10,25 @@ const ODSSection = () => {
       number: 11,
       title: "Ciudades y Comunidades Sostenibles",
       description: "EcoRide contribuye a crear un campus universitario más accesible y sostenible, reduciendo el tráfico vehicular individual y promoviendo la movilidad compartida dentro de la comunidad USAL.",
-      icon: Building2,
-      color: "text-[#FD9D24]",
-      bgColor: "bg-[#FD9D24]/10",
+      image: ods11,
     },
     {
       number: 13,
       title: "Acción por el Clima",
       description: "Cada viaje compartido reduce significativamente las emisiones de CO₂. Nuestro sistema calcula y visualiza el impacto ambiental positivo, motivando a la comunidad a seguir contribuyendo a la lucha contra el cambio climático.",
-      icon: CloudSun,
-      color: "text-[#3F7E44]",
-      bgColor: "bg-[#3F7E44]/10",
+      image: ods13,
     },
     {
       number: 12,
       title: "Producción y Consumo Responsable",
       description: "Fomentamos el uso eficiente de recursos al maximizar la ocupación de vehículos, reduciendo el consumo de combustible per cápita y promoviendo patrones de movilidad más conscientes y sostenibles.",
-      icon: Recycle,
-      color: "text-[#BF8B2E]",
-      bgColor: "bg-[#BF8B2E]/10",
+      image: ods12,
     },
     {
       number: 17,
       title: "Alianzas para Lograr los Objetivos",
       description: "EcoRide fortalece la colaboración entre estudiantes, docentes y personal administrativo, creando una red de apoyo mutuo que trasciende lo académico y construye una comunidad universitaria más unida y comprometida.",
-      icon: Handshake,
-      color: "text-[#19486A]",
-      bgColor: "bg-[#19486A]/10",
+      image: ods17,
     },
   ];
 
@@ -57,7 +52,6 @@ const ODSSection = () => {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {odsItems.map((item) => {
-            const Icon = item.icon;
             return (
               <Card
                 key={item.number}
@@ -65,15 +59,14 @@ const ODSSection = () => {
               >
                 <CardContent className="pt-6 space-y-4">
                   <div className="flex items-start gap-4">
-                    <div className={`${item.bgColor} p-3 rounded-lg group-hover:scale-110 transition-transform`}>
-                      <Icon className={`h-6 w-6 ${item.color}`} />
+                    <div className="group-hover:scale-105 transition-transform">
+                      <img 
+                        src={item.image} 
+                        alt={`ODS ${item.number} - ${item.title}`}
+                        className="w-20 h-20 object-contain"
+                      />
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className={`text-sm font-bold ${item.color}`}>
-                          ODS {item.number}
-                        </span>
-                      </div>
                       <h3 className="text-xl font-semibold mb-2 text-foreground">
                         {item.title}
                       </h3>
