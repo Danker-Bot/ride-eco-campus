@@ -53,6 +53,7 @@ const Footer = () => {
           <p>&copy; {new Date().getFullYear()} Universidad del Salvador - EcoRide USAL. Todos los derechos reservados.</p>
           <p className="mt-2 text-xs">Programa de Sustentabilidad y Responsabilidad Social Universitaria</p>
           <p className="mt-2 text-sm font-medium">Realizado con amor por alumnos de Ing Informática ❤️</p>
+          <p className="mt-1 text-sm font-medium">Realizado en la Hackaton 2025</p>
         </div>
       </div>
     </footer>
