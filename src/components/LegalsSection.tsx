@@ -25,11 +25,56 @@ const LegalsSection = () => {
                 Al utilizar este servicio, aceptás los siguientes términos:
               </p>
               <ul>
-                <li>El servicio es gratuito y de carácter colaborativo</li>
+                <li>El servicio es una plataforma de conexión colaborativa entre miembros de la comunidad USAL</li>
                 <li>Los usuarios son responsables de verificar la identidad de conductores y pasajeros</li>
-                <li>La plataforma no se hace responsable por incidentes durante los viajes</li>
+                <li>Los conductores deben contar con licencia de conducir vigente y seguro automotor</li>
+                <li>Los viajes compartidos están limitados exclusivamente a trayectos hacia/desde las instalaciones de la Universidad del Salvador</li>
                 <li>Se espera un comportamiento respetuoso y responsable de todos los usuarios</li>
+                <li>La plataforma facilita el contacto entre usuarios pero no es responsable de lo que ocurra durante los viajes</li>
               </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Cobertura de Seguro</CardTitle>
+              <CardDescription>Protección para conductores y pasajeros</CardDescription>
+            </CardHeader>
+            <CardContent className="prose prose-sm max-w-none">
+              <h3 className="font-semibold text-base mb-2">Convenio con Federación Patronal</h3>
+              <p>
+                EcoRide USAL mantiene un convenio especial con <strong>Federación Patronal Seguros</strong>,
+                aseguradora líder en Argentina, para brindar protección adicional a nuestra comunidad.
+              </p>
+              
+              <h4 className="font-semibold text-sm mt-4 mb-2">Seguro por Tercero Transportado Total</h4>
+              <p>
+                Los conductores que participen activamente en EcoRide (mínimo 25 conductores activos)
+                podrán acceder a un <strong>15% de descuento</strong> en la contratación del seguro
+                por tercero transportado total, que cubre:
+              </p>
+              <ul>
+                <li>Lesiones y/o muerte de pasajeros transportados</li>
+                <li>Gastos médicos, farmacéuticos y de internación</li>
+                <li>Indemnizaciones por incapacidad total o parcial</li>
+                <li>Cobertura hasta los montos establecidos por la póliza</li>
+              </ul>
+
+              <div className="bg-yellow-50 dark:bg-yellow-950/20 p-4 rounded-lg mt-4 border border-yellow-200 dark:border-yellow-800">
+                <h4 className="font-semibold text-sm mb-2 text-yellow-900 dark:text-yellow-200">⚠️ Importante: Limitación Geográfica</h4>
+                <p className="text-yellow-800 dark:text-yellow-300 text-sm">
+                  La cobertura del convenio con Federación Patronal es <strong>exclusivamente válida
+                  para viajes con destino u origen en las instalaciones de la Universidad del Salvador</strong>.
+                  Los viajes realizados fuera de este contexto no están cubiertos por este convenio especial.
+                </p>
+              </div>
+
+              <h4 className="font-semibold text-sm mt-4 mb-2">Responsabilidad del Conductor</h4>
+              <p>
+                Cada conductor es responsable de mantener vigente su seguro automotor obligatorio
+                y, opcionalmente, contratar coberturas adicionales. La participación en el programa
+                de descuentos es voluntaria y requiere cumplir con los requisitos establecidos.
+              </p>
             </CardContent>
           </Card>
 
