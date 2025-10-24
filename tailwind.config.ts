@@ -57,6 +57,19 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        "usal-light": "hsl(var(--usal-light))",
+        "usal-dark": "hsl(var(--usal-dark))",
+        "usal-green": "hsl(158 100% 28%)",
+        "eco-light": "hsl(158 40% 97%)",
+      },
+      backgroundImage: {
+        "usal-gradient": "var(--usal-gradient)",
+      },
+      boxShadow: {
+        "institutional": "var(--shadow-institutional)",
+        "subtle": "var(--shadow-subtle)",
+        "usal-soft": "0 2px 15px -2px hsl(158 20% 60% / 0.1)",
+        "usal-glow": "0 10px 40px -10px hsl(158 100% 28% / 0.25)",
       },
       borderRadius: {
         lg: "var(--radius)",
