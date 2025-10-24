@@ -40,6 +40,12 @@ const Navbar = () => {
               Nosotros
             </button>
             <button 
+              onClick={() => scrollToSection("ods")}
+              className="text-foreground hover:text-primary transition-colors font-medium"
+            >
+              ODS 2030
+            </button>
+            <button 
               onClick={() => scrollToSection("faq")}
               className="text-foreground hover:text-primary transition-colors font-medium"
             >
