@@ -8,12 +8,16 @@ import RoleSelector from "@/components/dashboard/RoleSelector";
 import DriverPanel from "@/components/dashboard/DriverPanel";
 import PassengerPanel from "@/components/dashboard/PassengerPanel";
 import EcologicalMetrics from "@/components/dashboard/EcologicalMetrics";
+import { useGeolocation } from "@/hooks/useGeolocation";
+import { toast } from "sonner";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [locationRequested, setLocationRequested] = useState(false);
+  const { getCurrentLocation, error: geoError } = useGeolocation();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -49,12 +53,37 @@ const Dashboard = () => {
 
       if (error) throw error;
       setProfile(data);
+      
+      // Pedir ubicación después de cargar el perfil
+      if (!locationRequested) {
+        setLocationRequested(true);
+        requestLocationPermission();
+      }
     } catch (error) {
       console.error("Error loading profile:", error);
     } finally {
       setLoading(false);
     }
   };
+
+  const requestLocationPermission = () => {
+    toast.info("Para mejorar tu experiencia, podés activar la ubicación", {
+      action: {
+        label: "Activar",
+        onClick: () => {
+          getCurrentLocation();
+          toast.success("Ubicación activada");
+        },
+      },
+      duration: 5000,
+    });
+  };
+
+  useEffect(() => {
+    if (geoError) {
+      toast.error(geoError);
+    }
+  }, [geoError]);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
