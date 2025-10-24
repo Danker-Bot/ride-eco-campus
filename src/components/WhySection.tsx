@@ -28,8 +28,8 @@ const WhySection = () => {
     {
       icon: Car,
       title: "Ahorra dinero en transporte",
-      description: "Comparte los gastos de combustible y estacionamiento",
-      stat: "$150",
+      description: "Comparte los gastos de combustible y reduce drásticamente el consumo",
+      stat: "$120K - 140K",
       statLabel: "ahorro mensual"
     },
     {
@@ -96,6 +96,37 @@ const WhySection = () => {
               </div>
             </Card>
           ))}
+        </div>
+
+        <div className="mt-16 p-8 md:p-12 bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl border border-primary/20">
+          <div className="text-center space-y-6">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+              Ejemplo Real: Escobar → Campus USAL Pilar
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Si viajás desde Escobar hasta el Campus Pilar compartiendo auto con otros 3 estudiantes:
+            </p>
+            <div className="grid md:grid-cols-3 gap-8 mt-8">
+              <div className="space-y-2">
+                <div className="text-4xl md:text-5xl font-bold text-primary">45 km</div>
+                <p className="text-sm text-muted-foreground">Distancia de ida</p>
+              </div>
+              <div className="space-y-2">
+                <div className="text-4xl md:text-5xl font-bold text-primary">8.5 kg</div>
+                <p className="text-sm text-muted-foreground">CO₂ ahorrado por viaje</p>
+              </div>
+              <div className="space-y-2">
+                <div className="text-4xl md:text-5xl font-bold text-primary">170 kg</div>
+                <p className="text-sm text-muted-foreground">CO₂ ahorrado al mes</p>
+              </div>
+            </div>
+            <div className="mt-6 p-4 bg-card rounded-lg border border-primary/20">
+              <p className="text-sm text-muted-foreground">
+                💡 Esto equivale a <span className="text-primary font-semibold">plantar 8 árboles cada mes</span> o evitar 
+                <span className="text-primary font-semibold"> 42 kg de plástico</span> en el océano
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
