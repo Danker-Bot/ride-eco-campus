@@ -25,27 +25,28 @@ const AboutSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold">
-              Sobre 
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                {" "}EcoRide
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground">
+              Sobre el 
+              <span className="text-primary">
+                {" "}Programa EcoRide USAL
               </span>
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Somos un proyecto nacido del compromiso con el medio ambiente y nuestra comunidad universitaria
+            <p className="text-lg text-muted-foreground">
+              Una iniciativa institucional de la Universidad del Salvador para promover la movilidad sostenible
             </p>
           </div>
 
-          <div className="mb-12 p-8 md:p-12 bg-gradient-to-br from-eco-light to-background rounded-3xl border border-primary/20">
+          <div className="mb-12 p-8 md:p-12 bg-gradient-to-br from-usal-light to-background rounded-2xl border border-primary/15">
             <p className="text-lg text-foreground leading-relaxed mb-6">
-              EcoRide nació de una simple observación: cada mañana, cientos de autos llegan a la facultad 
-              con un solo ocupante. Esto genera congestión, contamina el aire y representa un gasto 
-              innecesario para estudiantes y profesores.
+              EcoRide USAL es un programa institucional que surge del compromiso de la Universidad del Salvador 
+              con el desarrollo sostenible y la responsabilidad social universitaria. En línea con los valores 
+              de nuestra institución expresados en el lema <em>"Ciencia a la mente y virtud al corazón"</em>, 
+              buscamos fomentar prácticas sustentables entre nuestra comunidad académica.
             </p>
             <p className="text-lg text-foreground leading-relaxed">
-              Nuestro equipo decidió crear una solución que fuera segura, fácil de usar y 
-              exclusivamente para nuestra comunidad. Así nació EcoRide: una plataforma donde 
-              compartir el viaje es tan simple como un par de clics.
+              Esta plataforma facilita la organización de viajes compartidos entre estudiantes, docentes y personal 
+              administrativo, contribuyendo a la reducción de la huella de carbono institucional y fortaleciendo 
+              los lazos de nuestra comunidad universitaria.
             </p>
           </div>
 
@@ -53,9 +54,9 @@ const AboutSection = () => {
             {values.map((value, index) => (
               <Card 
                 key={index}
-                className="p-6 text-center space-y-4 hover:shadow-eco transition-all duration-300 hover:-translate-y-1 bg-card border-border/50"
+                className="p-6 text-center space-y-4 hover:shadow-institutional transition-all duration-300 hover:-translate-y-1 bg-card border-border"
               >
-                <div className="w-16 h-16 rounded-2xl bg-eco-gradient mx-auto flex items-center justify-center">
+                <div className="w-16 h-16 rounded-xl bg-usal-gradient mx-auto flex items-center justify-center">
                   <value.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">{value.title}</h3>

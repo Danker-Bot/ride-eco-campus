@@ -4,35 +4,35 @@ import heroImage from "@/assets/hero-ecoride.jpg";
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center pt-16">
-      <div className="absolute inset-0 bg-gradient-to-br from-eco-light via-background to-background -z-10" />
+    <section id="hero" className="relative min-h-screen flex items-center pt-20">
+      <div className="absolute inset-0 bg-gradient-to-br from-usal-light via-background to-background -z-10" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
               <Leaf className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Movilidad sostenible institucional</span>
+              <span className="text-sm font-medium text-primary">Programa Institucional USAL</span>
             </div>
             
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              Comparte el viaje,
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                {" "}reduce tu huella
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground">
+              Sistema de Carpooling
+              <span className="block text-primary mt-2">
+                Universidad del Salvador
               </span>
             </h1>
             
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-xl">
-              Conecta con estudiantes y profesores que hacen el mismo recorrido. 
-              Ahorra dinero, reduce emisiones de CO₂ y construye comunidad.
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
+              Plataforma institucional que conecta a la comunidad USAL para compartir viajes hacia el campus. 
+              Una iniciativa que promueve la movilidad sostenible y fortalece los vínculos entre estudiantes, docentes y personal administrativo.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
-                className="bg-eco-gradient text-white hover:opacity-90 transition-opacity shadow-eco text-lg group"
+                className="bg-usal-gradient text-white hover:opacity-90 transition-all shadow-institutional text-lg group"
               >
-                Empezar ahora
+                Acceder con email USAL
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
@@ -40,7 +40,7 @@ const HeroSection = () => {
                 variant="outline"
                 className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all"
               >
-                Conocer más
+                Más información
               </Button>
             </div>
 
@@ -70,11 +70,11 @@ const HeroSection = () => {
           </div>
 
           <div className="relative lg:block hidden">
-            <div className="absolute inset-0 bg-eco-gradient rounded-3xl opacity-20 blur-3xl" />
+            <div className="absolute inset-0 bg-usal-gradient rounded-2xl opacity-15 blur-3xl" />
             <img 
               src={heroImage} 
-              alt="Estudiantes compartiendo viaje de forma sostenible" 
-              className="relative rounded-3xl shadow-2xl w-full h-auto object-cover"
+              alt="Comunidad USAL compartiendo viaje de forma sostenible" 
+              className="relative rounded-2xl shadow-2xl w-full h-auto object-cover border border-border/50"
             />
           </div>
         </div>

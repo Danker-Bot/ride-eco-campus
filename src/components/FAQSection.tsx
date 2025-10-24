@@ -13,7 +13,7 @@ const FAQSection = () => {
     },
     {
       question: "¿Es seguro compartir viaje?",
-      answer: "Sí, es seguro. Solo pueden registrarse usuarios con email institucional válido. Además, los perfiles muestran información verificada, puedes ver valoraciones de otros usuarios, y siempre puedes comunicarte a través de nuestro chat interno antes de confirmar un viaje."
+      answer: "Absolutamente. Solo pueden registrarse usuarios con email institucional @usal.edu.ar verificado. Los perfiles incluyen información validada por la universidad, puedes ver valoraciones de otros miembros de la comunidad USAL, y la comunicación se realiza a través de nuestro sistema interno seguro antes de confirmar cualquier viaje."
     },
     {
       question: "¿Qué pasa si cambia mi horario?",
@@ -21,7 +21,7 @@ const FAQSection = () => {
     },
     {
       question: "¿Cómo funciona el sistema de costos?",
-      answer: "EcoRide es completamente gratuito. La plataforma no cobra comisiones. Los conductores pueden opcionalmente acordar compartir gastos de combustible con los pasajeros de forma directa, pero no es obligatorio. Nuestro objetivo es facilitar la movilidad sostenible, no generar ganancias."
+      answer: "EcoRide USAL es un servicio institucional completamente gratuito provisto por la universidad. No se cobran comisiones. Los usuarios pueden opcionalmente coordinar de forma privada el compartir gastos de combustible, pero no es un requisito del programa. El objetivo es promover la sustentabilidad, no generar lucro."
     },
     {
       question: "¿Puedo ser conductor y pasajero?",
@@ -29,7 +29,7 @@ const FAQSection = () => {
     },
     {
       question: "¿Qué información necesito para crear un viaje?",
-      answer: "Si eres conductor: origen, destino, horario de salida, asientos disponibles y datos de tu vehículo (modelo, color, patente). Si eres pasajero: simplemente buscas por horario y destino, y solicitas unirse a un viaje compatible."
+      answer: "Como conductor: punto de partida, destino (campus USAL), horario de salida, asientos disponibles y datos del vehículo (modelo, color, patente). Como pasajero: simplemente busca por horario y destino, y solicita unirse a un viaje compatible con tu itinerario."
     }
   ];
 
@@ -38,14 +38,14 @@ const FAQSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground">
               Preguntas 
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <span className="text-primary">
                 {" "}frecuentes
               </span>
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Todo lo que necesitas saber sobre EcoRide
+            <p className="text-lg text-muted-foreground">
+              Todo lo que necesita saber sobre el programa EcoRide USAL
             </p>
           </div>
 
@@ -54,7 +54,7 @@ const FAQSection = () => {
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="bg-card border border-border/50 rounded-2xl px-6 shadow-soft hover:shadow-eco transition-all duration-300"
+                className="bg-card border border-border rounded-xl px-6 shadow-subtle hover:shadow-institutional transition-all duration-300"
               >
                 <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary py-6">
                   {faq.question}

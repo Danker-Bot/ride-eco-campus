@@ -1,20 +1,23 @@
-import { Leaf, Mail, MapPin } from "lucide-react";
+import { Leaf, Mail, MapPin, Phone } from "lucide-react";
+import usualLogo from "@/assets/usal-logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-foreground text-background py-12">
+    <footer className="bg-usal-dark text-background py-12 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-eco-gradient flex items-center justify-center">
-                <Leaf className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold">EcoRide</span>
+            <div className="flex items-center gap-3">
+              <img 
+                src={usualLogo} 
+                alt="Universidad del Salvador" 
+                className="h-12 w-auto brightness-0 invert"
+              />
             </div>
-            <p className="text-background/80 leading-relaxed">
-              Movilidad sostenible para nuestra comunidad universitaria. 
-              Juntos reducimos nuestra huella de carbono.
+            <p className="text-lg font-semibold">EcoRide USAL</p>
+            <p className="text-background/70 leading-relaxed text-sm">
+              Programa institucional de movilidad sostenible de la Universidad del Salvador. 
+              Promoviendo el compromiso ambiental y la integración de nuestra comunidad.
             </p>
           </div>
 
@@ -28,22 +31,27 @@ const Footer = () => {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-bold">Contacto</h3>
-            <div className="space-y-3 text-background/80">
-              <div className="flex items-center gap-2">
-                <Mail className="w-5 h-5" />
-                <span>contacto@ecoride.edu</span>
+            <h3 className="text-lg font-bold">Contacto Institucional</h3>
+            <div className="space-y-3 text-background/70 text-sm">
+              <div className="flex items-start gap-2">
+                <Mail className="w-4 h-4 mt-0.5" />
+                <span>ecoride@usal.edu.ar</span>
               </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5" />
-                <span>Campus Universitario</span>
+              <div className="flex items-start gap-2">
+                <Phone className="w-4 h-4 mt-0.5" />
+                <span>+54 11 4813-1408</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 mt-0.5" />
+                <span>Av. Callao 801, C1020ADP<br />Buenos Aires, Argentina</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-background/20 text-center text-background/60">
-          <p>&copy; {new Date().getFullYear()} EcoRide. Todos los derechos reservados.</p>
+        <div className="pt-8 border-t border-background/20 text-center text-background/50 text-sm">
+          <p>&copy; {new Date().getFullYear()} Universidad del Salvador - EcoRide USAL. Todos los derechos reservados.</p>
+          <p className="mt-2 text-xs">Programa de Sustentabilidad y Responsabilidad Social Universitaria</p>
         </div>
       </div>
     </footer>
