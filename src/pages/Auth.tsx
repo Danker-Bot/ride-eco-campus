@@ -13,7 +13,6 @@ const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fullName, setFullName] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -29,19 +28,6 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      // Validate inputs
-      const validation = authSchema.safeParse({
-        email,
-        password,
-        fullName,
-      });
-
-      if (!validation.success) {
-        const errors = validation.error.errors.map((err) => err.message).join(", ");
-        toast.error(errors);
-        setLoading(false);
-        return;
-      }
       if (isLogin) {
         const { error } = await supabase.auth.signInWithPassword({
           email,
@@ -55,9 +41,6 @@ const Auth = () => {
           email,
           password,
           options: {
-            data: {
-              full_name: fullName,
-            },
             emailRedirectTo: `${window.location.origin}/dashboard`,
           },
         });
@@ -90,20 +73,6 @@ const Auth = () => {
           </p>
 
           <form onSubmit={handleAuth} className="space-y-4">
-            {!isLogin && (
-              <div className="space-y-2">
-                <Label htmlFor="fullName">Nombre completo</Label>
-                <Input
-                  id="fullName"
-                  type="text"
-                  placeholder="Juan Pérez"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  required={!isLogin}
-                />
-              </div>
-            )}
-
             <div className="space-y-2">
               <Label htmlFor="email">Email institucional</Label>
               <Input
